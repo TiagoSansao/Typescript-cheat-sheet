@@ -24,14 +24,17 @@ let lists5: (string | boolean)[] = ['Jose', "Marcos", false, true, "Richard"]
 
 let person1: [string, number] = ['Bolsonaro', 17];
 
-console.log(person2);
-
-enum Color { Red, Green, Blue };
-let c: Color = Color.Green;
+// A variable with "any" type can be assigned to diffenrent types
 
 let anyVariable: any = true;
 anyVariable = 'salve';
 anyVariable = 5;
+
+// Enum
+
+enum Color { Red, Green, Blue };
+let c: Color = Color.Green;
+
 
 // Declared variables without assignment receive "any" type
 
@@ -42,13 +45,13 @@ a = 20;
 
 let x = "Hello Typescript";
 
-// Multitype variables, use the pipe |
+// For multitype variables, use the pipe |
 
 let multiType: number | string | number[] = 'José';
 multiType = [5, 3];
 multiType = "I'm a string!"
 
-// Functions, give type to parameters and especify the return type
+// Functions, give type to parameters and specify the return type
 
 function add(num1: number, num2?: number): number { // The type specified after the parameters is the return type
   if (num2) return num1 + num2;
@@ -59,15 +62,17 @@ function hello(): void { // use void when the function doesn't return anything
   console.log('hi');
 }
 
+// Objects, create an "interface" specifying the type of each property
+
 interface Person {
   firstName: string;
-  lastName?: string;
+  lastName?: string; // Add an interrogation mark before :  when the variable isn't always in the object
 }
 
-function fullName({ firstName, lastName = '' }: Person): string {
+function fullName(name: Person): string {
+  return `${name.firstName} ${name.lastName}`;
+}
+
+function fullNameDestructured({ firstName, lastName = '' }: Person): string { // You can use interface with destructuration too
   return `${firstName} ${lastName}`;
 }
-let p = {
-  firstName: 'José',
-}
-fullName(p);
